@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CloudGuard: interactive, fully synthetic cloud security posture dashboard — a public cybersecurity portfolio project." />
+  <meta name="theme-color" content="#080e18" />
+  <title>CloudGuard | Cloud Security Posture</title>
+  <link rel="stylesheet" href="styles.css" />
+  <script type="module" src="app.mjs"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" aria-label="CloudGuard overview">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none"><path d="M15 2L26 7v9.3C26 22.6 20.2 26 15 28 9.8 26 4 22.6 4 16.3V7L15 2Z" stroke="currentColor" stroke-width="2"/><path d="m9 15 4 4 8-9" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+        <span><strong>CLOUD<span class="brand-accent">GUARD</span></strong><small>SECURITY INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-caption">WORKSPACE</div>
+      <nav class="navigation" id="navigation">
+        <button type="button" class="nav-item active" data-view="overview" aria-current="page"><span class="nav-ico">◫</span><span>Overview</span><span class="nav-shortcut">01</span></button>
+        <button type="button" class="nav-item" data-view="findings"><span class="nav-ico">▤</span><span>Findings explorer</span><span class="nav-shortcut">02</span></button>
+        <button type="button" class="nav-item" data-view="controls"><span class="nav-ico">⬡</span><span>Control coverage</span><span class="nav-shortcut">03</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="environment-panel">
+        <div class="tiny-label">DATA CLASSIFICATION</div>
+        <div class="sample-label"><span class="signal amber"></span> SIMULATED DATA</div>
+        <p>No live systems, cloud accounts, or customer data are connected.</p>
+      </div>
+      <div class="sidebar-footer"><div class="avatar">AS</div><div><strong>Security portfolio</strong><span>Abdulrahman Safwat</span></div></div>
+    </aside>
+
+    <main class="main" id="main-content">
+      <header class="page-header">
+        <div class="breadcrumb"><span>WORKSPACE</span><span class="slash">/</span><span id="view-crumb">OVERVIEW</span></div>
+        <div class="header-actions"><span class="live-chip"><span class="signal"></span> SYNTHETIC SNAPSHOT</span><span class="snapshot-date">08 NOV 2026</span></div>
+      </header>
+      <div class="content">
+        <div class="page-title-row"><div><div class="eyebrow">CLOUD SECURITY OPERATIONS <span class="accent-line"></span> PORTFOLIO DEMO</div><h1 id="page-title">Cloud security posture<span class="period">.</span></h1><p class="intro" id="page-description">A decision-ready view of cloud exposure, security controls, and remediation priorities.</p></div><div class="title-actions"><button class="btn btn-secondary" type="button" id="reset-filters" title="Reset all filters">↺ <span>Reset filters</span></button><button class="btn btn-primary" type="button" id="download-csv"><span aria-hidden="true">↓</span> Export findings</button></div></div>
+
+        <section class="filter-strip" aria-label="Dashboard filters">
+          <label class="filter-field"><span>ENVIRONMENT</span><select id="environment-filter"><option value="all">All environments</option><option value="production">Production</option><option value="staging">Staging</option><option value="shared">Shared services</option></select></label>
+          <label class="filter-field"><span>CONTROL DOMAIN</span><select id="domain-filter"><option value="all">All domains</option><option value="identity">Identity & access</option><option value="network">Network exposure</option><option value="data">Data protection</option><option value="workload">Workload security</option><option value="monitoring">Monitoring</option><option value="application">Application security</option></select></label>
+          <label class="filter-field"><span>SEVERITY <small>(findings)</small></span><select id="severity-filter"><option value="all">All severities</option><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label>
+          <label class="filter-field search-field"><span>FIND A RECORD</span><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search-filter" type="search" placeholder="ID, asset, finding, owner..." autocomplete="off" aria-label="Search findings" /></div></label>
+        </section>
+        <div class="source-banner" role="note"><span aria-hidden="true">◇</span><span><strong>Demonstration environment.</strong> All hosts, findings, controls and historical points are fabricated for a portfolio example. No live audit or compliance certification is implied.</span></div>
+
+        <section class="view" id="view-overview" aria-label="Overview dashboard">
+          <div class="section-heading"><div><span class="section-index">01 /</span> <h2>Security pulse</h2></div><p>Current simulated state · <span id="summary-scope">All environments</span></p></div>
+          <div class="kpi-grid" id="kpi-grid" aria-live="polite"></div>
+
+          <div class="viz-grid">
+            <article class="panel severity-panel"><div class="panel-heading"><div><div class="panel-kicker">PORTFOLIO EXPOSURE</div><h3>Severity distribution</h3></div><span class="panel-tag">OPEN FINDINGS</span></div><div class="donut-layout"><div class="donut-wrap"><div class="donut" id="severity-donut" role="img" aria-label="Open finding severity distribution"><div class="donut-center"><strong id="donut-total">0</strong><span>OPEN</span></div></div></div><div class="severity-legend" id="severity-legend"></div></div><div class="panel-footnote">Counts are based on currently open synthetic findings.</div></article>
+            <article class="panel risk-panel"><div class="panel-heading"><div><div class="panel-kicker">PRIORITY ANALYSIS</div><h3>Risk concentration</h3></div><span class="panel-tag">WEIGHTED POINTS</span></div><div class="bars" id="domain-bars"></div><div class="panel-footnote">Illustrative risk scores summed by control domain; not CVSS.</div></article>
+          </div>
+
+          <div class="viz-grid lower-grid">
+            <article class="panel trend-panel"><div class="panel-heading"><div><div class="panel-kicker">TEMPORAL SIGNAL</div><h3>Open findings trend</h3><p class="panel-subtitle">Weekly counts reconstructed from fictional discovery and resolution dates</p></div><span class="panel-tag">7 WEEKLY POINTS</span></div><div class="trend-chart" id="trend-chart"></div><div class="trend-footer"><span><span class="signal"></span> OPEN FINDINGS</span><span>27 SEP — 08 NOV 2026</span></div></article>
+            <article class="panel coverage-panel"><div class="panel-heading"><div><div class="panel-kicker">CONTROL HYGIENE</div><h3>Assessment coverage</h3></div><span class="panel-tag">CONTROL CATALOG</span></div><div class="coverage-hero"><div><span class="coverage-number" id="coverage-number">—</span><span class="coverage-unit">PASS RATE</span></div><div class="coverage-gauge"><div id="coverage-progress"></div></div></div><div id="coverage-breakdown" class="coverage-breakdown"></div><p class="panel-footnote">Pass ÷ assessed controls. Unassessed controls excluded. Severity and search filters apply only to findings.</p></article>
+          </div>
+
+          <div class="section-heading queue-title"><div><span class="section-index">02 /</span><h2>Priority action queue</h2></div><button type="button" class="text-button" data-view="findings">View all findings <span aria-hidden="true">↗</span></button></div>
+          <div class="table-panel"><div class="table-topline"><span class="tiny-label">SORTED BY RISK SCORE</span><span class="table-count" id="overview-table-count">—</span></div><div class="table-scroller"><table><thead><tr><th>FINDING</th><th>SEVERITY</th><th>ENVIRONMENT</th><th>PRIORITY</th><th>OWNER</th><th>DUE DATE</th><th></th></tr></thead><tbody id="overview-table"></tbody></table></div></div>
+        </section>
+
+        <section class="view hidden" id="view-findings" aria-label="Findings explorer">
+          <div class="section-heading"><div><span class="section-index">02 /</span><h2>Findings explorer</h2></div><p>Interactive review · all filtered records</p></div>
+          <div class="subhead-card"><span class="subhead-icon">▤</span><div><strong id="findings-total">—</strong><p>Showing the complete filtered set, including resolved findings. Select any record for details.</p></div></div>
+          <div class="table-panel"><div class="table-topline"><span class="tiny-label">PRIORITIZED INVENTORY</span><span class="table-count" id="findings-table-count">—</span></div><div class="table-scroller"><table><thead><tr><th>FINDING</th><th>SEVERITY</th><th>ENVIRONMENT</th><th>STATUS</th><th>PRIORITY</th><th>OWNER</th><th>DUE DATE</th><th></th></tr></thead><tbody id="findings-table"></tbody></table></div></div>
+        </section>
+
+        <section class="view hidden" id="view-controls" aria-label="Control assessments">
+          <div class="section-heading"><div><span class="section-index">03 /</span><h2>Control assessments</h2></div><p>Snapshot control catalog · <span id="controls-scope">All environments</span></p></div>
+          <div class="control-topline" id="control-summary"></div>
+          <div class="table-panel"><div class="table-topline"><span class="tiny-label">ASSESSMENT REGISTER</span><span class="table-count" id="controls-table-count">—</span></div><div class="table-scroller"><table><thead><tr><th>CONTROL</th><th>DOMAIN</th><th>ENVIRONMENT</th><th>RESULT</th><th>OWNER</th><th>OBSERVATION</th></tr></thead><tbody id="controls-table"></tbody></table></div></div>
+          <p class="control-note">These are fabricated control assessments, not actual GCP configuration findings or verified audit evidence.</p>
+        </section>
+        <footer class="page-footer"><span>© 2026 CLOUDGUARD <span class="footer-divider">/</span> PORTFOLIO DEMONSTRATION</span><span>MADE FOR SECURITY DECISIONS <span class="footer-dot">●</span> ALL DATA FICTIONAL</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="drawer-backdrop hidden" id="drawer-backdrop"></div>
+  <aside class="detail-drawer hidden" id="detail-drawer" aria-labelledby="drawer-title" aria-modal="true" role="dialog" tabindex="-1">
+    <div class="drawer-head"><div><span class="tiny-label">FINDING DETAIL</span><h2 id="drawer-title">—</h2></div><button class="close-btn" id="close-drawer" type="button" aria-label="Close finding details">×</button></div><div class="drawer-body" id="drawer-content"></div>
+  </aside>
+  <noscript><div class="noscript">This dashboard requires JavaScript. All source code is available in its public GitHub repository.</div></noscript>
+</body>
+</html>
