@@ -4,6 +4,12 @@
 
 An interactive, responsive security dashboard for a **fictional multi-environment cloud estate**. Designed as a public cybersecurity portfolio demonstration with no operational credentials or client data.
 
+## Live demo & case study
+
+**[🌐 Open CloudGuard dashboard](https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/)** · **[Read the engineering case study](CASE_STUDY.md)** · [Check deployment status](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/actions/workflows/cloudguard-pages.yml)
+
+The repository owner reported a successful GitHub Pages deployment. Public HTTP availability has not been independently confirmed by this documentation update.
+
 ## Preview
 
 To view the dashboard, run a local server (ES module loading usually does not work from `file://`):
