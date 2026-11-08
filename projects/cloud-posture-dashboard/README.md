@@ -72,6 +72,21 @@ All environments, assets, alerts, owners, dates and control results are **invent
 
 ## GitHub Pages — publishing setup
 
+### Troubleshooting: `Get Pages site failed — Not Found`
+
+If the **Publish CloudGuard to GitHub Pages** workflow fails in `actions/configure-pages@v5` with a 404 or **Get Pages site failed**, this usually means the GitHub Pages site is not yet enabled. The Node.js deprecation notice in the run annotations is a warning, not the cause of this particular failure.
+
+**Fix (repository admin):**
+
+1. Open [Settings → Pages](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/settings/pages).
+2. Under **Build and deployment**, choose **GitHub Actions** as the **Source**.
+3. Return to the [deployment workflow](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/actions/workflows/cloudguard-pages.yml) and select **Run workflow** on `main`.
+4. Confirm both `build` and `deploy` jobs succeed, then open **Visit site** from GitHub Pages settings.
+
+Do not add `enablement: true` with the default `GITHUB_TOKEN`: the official `configure-pages` action requires a **different privileged token** for auto-enablement. Manual Pages activation is safer and avoids publishing a personal access token or adding privileged secrets.
+
+
+
 This project includes the dedicated deployment workflow [`cloudguard-pages.yml`](../../.github/workflows/cloudguard-pages.yml). It tests the static dashboard and uploads **only** the public website files (`index.html`, `styles.css`, `app.mjs`, `data.mjs`, and `logic.mjs`). No secret, API, or production data is required.
 
 **One-time repository-owner setup (if Pages is not enabled):**
