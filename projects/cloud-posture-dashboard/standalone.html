@@ -1,0 +1,395 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="CloudGuard: interactive, fully synthetic cloud security posture dashboard — a public cybersecurity portfolio project." />
+  <meta name="theme-color" content="#080e18" />
+  <title>CloudGuard | Cloud Security Posture</title>
+  <style>:root{--bg:#080d16;--panel:#0e1622;--panel-soft:#111c2a;--ink:#e8f0f7;--muted:#8a9daf;--dim:#617588;--edge:#1d2c3b;--cyan:#68e5d2;--blue:#5f8bf9;--amber:#f7bf65;--red:#fb7776;--violet:#ae91f0;--green:#5bd5ad;--rad:14px;font-family:Inter,ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Arial,sans-serif;color-scheme:dark}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--ink);font-size:14px;-webkit-font-smoothing:antialiased}button,input,select{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible{outline:2px solid var(--cyan);outline-offset:3px}a{color:inherit;text-decoration:none}.hidden{display:none!important}.app-shell{min-height:100vh;display:grid;grid-template-columns:245px minmax(0,1fr)}.sidebar{border-right:1px solid #1b2b3a;background:#0b131e;display:flex;flex-direction:column;padding:28px 18px 22px;position:sticky;top:0;height:100vh}.brand{display:flex;align-items:center;gap:11px;padding:0 11px 24px;border-bottom:1px solid #213041}.brand-symbol{width:39px;height:39px;border:1px solid #295a5b;display:grid;place-items:center;border-radius:11px;background:#112b31;color:var(--cyan)}.brand-symbol svg{width:24px;height:24px}.brand strong{font-size:16px;letter-spacing:1px;font-weight:820}.brand-accent{color:var(--cyan)}.brand small{display:block;color:var(--dim);font-size:8px;font-weight:700;letter-spacing:2px;margin-top:5px}.nav-caption,.tiny-label{font-size:10px;letter-spacing:1.55px;color:#70849a;font-weight:800}.nav-caption{padding:31px 13px 13px}.navigation{display:grid;gap:7px}.nav-item{display:flex;align-items:center;gap:12px;color:#91a3b5;padding:13px 14px;border:1px solid transparent;border-radius:9px;background:transparent;text-align:left;font-weight:600;width:100%}.nav-item:hover{background:#132434;color:var(--ink)}.nav-item.active{background:#132d32;border-color:#245456;color:#8ffce8}.nav-ico{font-size:20px;width:20px;line-height:1;text-align:center;font-weight:400}.nav-shortcut{margin-left:auto;font-size:10px;color:#69838d}.sidebar-spacer{flex:1}.environment-panel{border:1px solid #28333f;border-radius:12px;padding:17px 15px;background:linear-gradient(130deg,#17222b,#0e1824)}.sample-label{font-size:12px;font-weight:800;letter-spacing:.4px;margin-top:15px;display:flex;align-items:center;gap:8px}.signal{display:inline-block;width:7px;height:7px;background:var(--cyan);border-radius:100%;box-shadow:0 0 11px #55e4cb72;vertical-align:middle}.signal.amber{background:var(--amber);box-shadow:0 0 9px #f7bf656b}.environment-panel p{color:#869aab;font-size:12px;line-height:1.6;margin:11px 0 0}.sidebar-footer{display:flex;align-items:center;gap:10px;margin-top:25px;padding:18px 5px 0;border-top:1px solid #213041}.avatar{background:#203b40;border:1px solid #32756c;color:#8df6db;border-radius:9px;display:grid;place-items:center;width:33px;height:33px;font-size:11px;font-weight:800}.sidebar-footer strong{font-size:11px;display:block}.sidebar-footer span{display:block;font-size:11px;color:#7c91a3;margin-top:3px}.main{min-width:0}.page-header{height:66px;border-bottom:1px solid #1b2b38;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(22px,3.4vw,53px)}.breadcrumb{display:flex;align-items:center;gap:13px;color:#778a9f;font-weight:800;letter-spacing:1.4px;font-size:10px}.slash{color:#4b6576}.breadcrumb span:last-child{color:#c9e0e8}.header-actions{display:flex;align-items:center;gap:20px}.live-chip{font-size:10px;font-weight:800;letter-spacing:.7px;display:inline-flex;align-items:center;gap:9px;color:#9dcfc5;background:#12252a;border:1px solid #244044;border-radius:30px;padding:8px 12px}.snapshot-date{font-size:10px;color:#758ea0;font-weight:800;letter-spacing:1px}.content{max-width:1570px;padding:42px clamp(22px,3.4vw,53px) 19px;margin:0 auto}.page-title-row{display:flex;justify-content:space-between;align-items:flex-end;gap:22px;margin-bottom:26px}.eyebrow{color:#7e97a8;font-size:10px;letter-spacing:1.7px;font-weight:850;display:flex;align-items:center;gap:11px}.accent-line{display:inline-block;width:20px;height:1px;background:#3a9c94}h1{font-size:clamp(29px,3.1vw,44px);font-weight:790;letter-spacing:-1.8px;line-height:1.13;margin:14px 0 9px}.period{color:var(--cyan)}.intro{margin:0;color:#849aab;font-size:13px;line-height:1.6}.title-actions{display:flex;gap:9px;padding-bottom:3px;flex-shrink:0}.btn{border-radius:8px;padding:11px 15px;border:1px solid #2a4151;font-size:12px;font-weight:780;display:inline-flex;align-items:center;gap:9px;white-space:nowrap}.btn-secondary{background:#101b28;color:#c5d5df}.btn-secondary:hover{background:#192c3b}.btn-primary{background:#74ecdc;color:#062526;border-color:#74ecdc}.btn-primary:hover{background:#9dffef}.filter-strip{display:grid;grid-template-columns:repeat(3,minmax(140px,1fr)) minmax(190px,1.5fr);gap:12px;padding:16px;border:1px solid var(--edge);background:#0e1723;border-radius:12px}.filter-field{display:grid;gap:7px;min-width:0}.filter-field>span{font-size:9px;letter-spacing:1.3px;font-weight:820;color:#8093a6}.filter-field>span small{color:#718596;letter-spacing:0;font-weight:500}.filter-field select,.search-wrap{height:38px;border-radius:6px;background:#131f2c;border:1px solid #2a3b49;color:#d4e5ef;padding:0 11px;min-width:0;width:100%;font-size:12px;outline:0}.filter-field select:focus,.search-wrap:focus-within{border-color:#49b6b4}.search-wrap{display:flex;align-items:center;gap:8px}.search-wrap>span{font-size:20px;color:#7794a7}.search-wrap input{border:0;outline:0;min-width:0;width:100%;background:transparent;color:var(--ink);font-size:12px}.search-wrap input::placeholder{color:#607488}.source-banner{margin:16px 0 32px;padding:12px 15px;border:1px solid #394137;background:#202318;border-radius:8px;color:#b2ba9c;display:flex;align-items:center;gap:12px;font-size:11px;line-height:1.5}.source-banner>span:first-child{font-size:20px;color:var(--amber)}.source-banner strong{color:#f1d59f}.section-heading{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:28px 0 17px}.section-heading>div{display:flex;align-items:baseline;gap:9px}.section-index{font-weight:760;color:#5dd6c4;font-size:12px}.section-heading h2{display:inline;font-size:16px;letter-spacing:-.25px;margin:0;font-weight:780}.section-heading p{font-size:11px;color:#7790a2;margin:0}.kpi-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:13px}.kpi{border:1px solid var(--edge);border-radius:12px;background:#101a27;padding:18px 19px;min-height:136px;position:relative;overflow:hidden}.kpi:before{content:"";height:3px;width:35px;position:absolute;top:0;left:18px;background:var(--kpi-accent,var(--cyan))}.kpi-label{font-size:11px;color:#8c9fb0;font-weight:650;letter-spacing:.1px}.kpi-value{font-size:33px;font-weight:760;letter-spacing:-1.5px;margin-top:22px;line-height:1}.kpi-footer{font-size:10px;color:#6e8598;margin-top:9px;line-height:1.4}.viz-grid{display:grid;grid-template-columns:minmax(0,.88fr) minmax(0,1.12fr);gap:16px;margin-top:17px}.panel{border-radius:13px;background:#0e1824;border:1px solid var(--edge);padding:24px 25px;min-width:0}.panel-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:18px}.panel-kicker{font-size:9px;font-weight:800;letter-spacing:1.5px;color:#638d99;margin-bottom:8px}.panel-heading h3{font-size:16px;margin:0;font-weight:760;letter-spacing:-.15px}.panel-tag{font-size:9px;font-weight:780;white-space:nowrap;color:#6b8495;border:1px solid #2b3b48;border-radius:5px;padding:7px 8px;letter-spacing:.6px}.donut-layout{display:grid;grid-template-columns:200px 1fr;gap:17px;align-items:center;min-height:234px}.donut-wrap{display:grid;place-items:center}.donut{--segments:#233545;aspect-ratio:1;width:180px;border-radius:50%;background:conic-gradient(var(--segments));position:relative;display:grid;place-items:center;box-shadow:0 0 0 8px #16243260}.donut:before{content:"";position:absolute;inset:27px;background:#0e1824;border-radius:50%}.donut-center{position:relative;display:flex;align-items:center;flex-direction:column;gap:3px}.donut-center strong{font-size:46px;line-height:1;font-weight:780;letter-spacing:-1.5px}.donut-center span{font-size:10px;letter-spacing:2px;color:#748a9c;font-weight:820}.severity-legend{display:grid;gap:15px}.legend-row{display:flex;align-items:center;gap:10px}.legend-dot{width:8px;height:8px;border-radius:3px;flex-shrink:0}.legend-row>span:nth-child(2){font-size:12px;color:#b8c8d5;flex:1}.legend-row strong{font-size:14px;font-weight:730}.panel-footnote{font-size:10px;color:#698397;line-height:1.5;margin:13px 0 0;border-top:1px solid #1e2e3d;padding-top:13px}.bars{display:grid;gap:16px;min-height:234px;align-content:center}.bar-item{display:grid;gap:7px}.bar-header{display:flex;justify-content:space-between;gap:10px;align-items:center;font-size:12px}.bar-header strong{font-size:11px;font-weight:680;color:#b8cddd}.bar-header span{font-size:11px;color:#8199aa}.bar-track{height:7px;background:#1e2e40;border-radius:4px;overflow:hidden}.bar-fill{height:100%;background:linear-gradient(90deg,#276c74,#6ce8d3);border-radius:4px;transition:width .25s ease}.bar-item:nth-child(2) .bar-fill{background:linear-gradient(90deg,#4568ac,#85a6ff)}.bar-item:nth-child(3) .bar-fill{background:linear-gradient(90deg,#7661ae,#b5a0f5)}.bar-item:nth-child(4) .bar-fill{background:linear-gradient(90deg,#957252,#efc68a)}.bar-item:nth-child(5) .bar-fill{background:linear-gradient(90deg,#6a88a1,#9fc4d7)}.lower-grid{grid-template-columns:minmax(0,1.52fr) minmax(0,.78fr)}.panel-subtitle{color:#71899c;font-size:11px;line-height:1.6;margin:6px 0 0}.trend-panel .panel-heading{margin-bottom:20px}.trend-chart{min-height:218px}.trend-chart svg{width:100%;height:auto;display:block}.trend-footer{display:flex;justify-content:space-between;font-size:9px;letter-spacing:1.1px;color:#73889a;font-weight:740;margin-top:8px}.trend-footer .signal{height:6px;width:6px;margin-right:6px}.coverage-hero{display:flex;align-items:flex-end;gap:22px;margin-top:35px;justify-content:space-between}.coverage-hero>div:first-child{display:flex;align-items:baseline;gap:6px}.coverage-number{font-weight:760;font-size:55px;letter-spacing:-3px;line-height:1;color:#6de4ce}.coverage-unit{font-size:10px;color:#859bac;font-weight:800;letter-spacing:1px}.coverage-gauge{height:8px;background:#223244;flex:1;max-width:150px;border-radius:5px;overflow:hidden;margin-bottom:8px}.coverage-gauge>div{height:100%;background:#65dec3;border-radius:5px;transition:width .3s ease}.coverage-breakdown{display:grid;grid-template-columns:repeat(2,1fr);gap:12px;margin-top:24px}.coverage-cell{border:1px solid #213142;border-radius:7px;padding:11px 13px;display:flex;align-items:center;justify-content:space-between;gap:6px}.coverage-cell span{color:#91a4b3;font-size:11px}.coverage-cell strong{font-size:15px}.queue-title{margin-top:34px}.text-button{background:transparent;border:0;color:var(--cyan);font-weight:750;font-size:12px}.text-button:hover{text-decoration:underline}.table-panel{border-radius:12px;border:1px solid var(--edge);background:#0e1723;overflow:hidden}.table-topline{padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #1b2d3b}.table-count{font-size:11px;color:#768da0}.table-scroller{overflow-x:auto}table{border-collapse:collapse;width:100%;min-width:775px}th{text-align:left;color:#748b9e;letter-spacing:1px;font-size:9px;font-weight:850;background:#111c29;padding:13px 16px;white-space:nowrap}td{padding:16px;font-size:11px;color:#9bafbe;border-top:1px solid #1b2d3a;white-space:nowrap}tbody tr:hover{background:#172634}.finding-title{font-size:12px;font-weight:730;color:#d7e6f1;display:block;max-width:250px;overflow:hidden;text-overflow:ellipsis}.finding-meta{font-size:10px;color:#678094;margin-top:5px;display:block}.badge{display:inline-flex;align-items:center;gap:6px;letter-spacing:.25px;border-radius:5px;padding:6px 8px;font-weight:740;font-size:10px}.badge.critical{background:#43242c;color:#ff9e9f}.badge.high{background:#44331f;color:#ffc87f}.badge.medium{background:#23365b;color:#a4baff}.badge.low{background:#203c39;color:#8ce8cd}.badge.pass{background:#183c35;color:#76e5bd}.badge.fail{background:#43242c;color:#ff9e9f}.badge.partial{background:#453522;color:#f5cd89}.badge.not_assessed{background:#2e3242;color:#a5adc2}.badge.open{background:#234258;color:#b3ddf1}.badge.in_progress{background:#2c3d52;color:#a5caff}.badge.mitigated{background:#21443a;color:#8fe8ce}.badge.accepted_risk{background:#403743;color:#dab5e6}.badge.resolved{background:#1d3c34;color:#83ddb6}.priority-cell{display:flex;align-items:center;gap:8px}.priority-track{width:45px;height:5px;border-radius:4px;background:#283a4a;overflow:hidden}.priority-track b{height:100%;display:block;background:#65dfce}.priority-cell strong{font-size:12px;color:#cbdde9}.overdue{color:#fd9392;font-size:10px;display:block;margin-top:5px}.row-button{border:1px solid #2a4653;background:#142b34;color:#83ead6;border-radius:6px;padding:6px 10px;white-space:nowrap;font-size:10px;font-weight:760}.row-button:hover{background:#1e4248}.empty-state{padding:44px 20px;text-align:center;color:#91a7b6;font-size:12px}.subhead-card{display:flex;gap:14px;align-items:center;margin-bottom:17px;padding:17px 22px;background:#11232b;border:1px solid #20474b;border-radius:11px}.subhead-icon{color:#7eeddb;font-size:29px}.subhead-card strong{font-size:17px}.subhead-card p{margin:4px 0 0;color:#87a4a9;font-size:12px}.control-topline{display:grid;grid-template-columns:repeat(4,1fr);gap:13px;margin-bottom:18px}.control-stat{padding:17px 19px;background:#101a27;border:1px solid var(--edge);border-radius:10px}.control-stat strong{display:block;font-size:28px;line-height:1.1}.control-stat span{font-size:11px;color:#8498a9;display:block;margin-top:8px}.observation{white-space:normal;min-width:190px;max-width:420px;font-size:11px;line-height:1.5}.control-note{font-size:11px;color:#738b9d;margin:17px 0 0}.page-footer{border-top:1px solid #182938;margin-top:55px;padding-top:18px;display:flex;justify-content:space-between;gap:18px;font-size:9px;color:#617b8d;letter-spacing:1.2px;font-weight:780}.footer-divider{margin:0 5px}.footer-dot{color:var(--cyan)}.drawer-backdrop{position:fixed;inset:0;background:#03080bc7;z-index:12}.detail-drawer{position:fixed;right:0;top:0;bottom:0;width:min(500px,100%);z-index:13;background:#101a27;box-shadow:-20px 0 65px #0008;border-left:1px solid #2b4553;overflow:auto}.drawer-head{padding:28px;border-bottom:1px solid #294050;display:flex;justify-content:space-between;gap:12px}.drawer-head h2{font-size:22px;margin:10px 0 0;line-height:1.27;letter-spacing:-.6px}.close-btn{border:1px solid #395367;background:#1d3140;color:#d6ebf2;width:32px;height:32px;border-radius:8px;font-size:23px;line-height:1}.drawer-body{padding:27px 28px}.drawer-score{border:1px solid #2d5052;background:#152d33;border-radius:10px;padding:20px;display:flex;align-items:center;justify-content:space-between}.drawer-score strong{font-size:38px;color:#80eddf;line-height:1}.drawer-score small{display:block;color:#83aca9;font-size:10px;letter-spacing:1.1px;margin-top:7px;font-weight:760}.drawer-section{margin-top:30px}.drawer-section h3{color:#81ead8;font-size:10px;letter-spacing:1.4px}.drawer-list{display:grid;gap:0}.drawer-list>div{display:flex;justify-content:space-between;gap:16px;padding:13px 0;border-bottom:1px solid #213345}.drawer-list dt{color:#7994a6;font-size:12px}.drawer-list dd{margin:0;text-align:right;font-size:12px;color:#d0dee6;overflow-wrap:anywhere}.drawer-note{color:#8ea4b1;font-size:12px;line-height:1.65;border-left:2px solid #2d7572;padding-left:13px;margin:20px 0}.noscript{background:#542a29;padding:18px;text-align:center}
+@media(max-width:1220px){.app-shell{grid-template-columns:205px minmax(0,1fr)}.sidebar{padding-left:13px;padding-right:13px}.brand{padding-left:5px;gap:8px}.brand strong{font-size:14px}.kpi-grid{grid-template-columns:repeat(3,1fr)}.donut-layout{grid-template-columns:155px 1fr}.donut{width:140px}.donut:before{inset:21px}.donut-center strong{font-size:34px}.viz-grid{grid-template-columns:1fr 1fr}.lower-grid{grid-template-columns:1.2fr 1fr}.filter-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:820px){.app-shell{display:block}.sidebar{position:relative;height:auto;flex-direction:row;flex-wrap:wrap;align-items:center;gap:10px;padding:12px 17px}.brand{padding:0;border:0}.brand-symbol{width:31px;height:31px}.brand-symbol svg{width:20px;height:20px}.nav-caption,.sidebar-spacer,.environment-panel,.sidebar-footer{display:none}.navigation{display:flex;margin-left:auto;gap:4px}.nav-item{padding:9px;gap:5px}.nav-item>span:nth-child(2){display:none}.nav-shortcut{display:none}.page-header{height:52px}.content{padding-top:26px}.page-title-row{align-items:flex-start;flex-direction:column}.viz-grid,.lower-grid{grid-template-columns:1fr}.donut-layout{grid-template-columns:180px 1fr}.donut{width:160px}.donut:before{inset:24px}.kpi-grid{grid-template-columns:repeat(3,1fr)}.snapshot-date{display:none}}
+@media(max-width:560px){.kpi-grid{grid-template-columns:repeat(2,1fr)}.filter-strip{grid-template-columns:1fr}.panel{padding:19px}.donut-layout{grid-template-columns:1fr}.severity-legend{grid-template-columns:repeat(2,1fr);gap:13px}.page-title-row h1{font-size:32px}.title-actions{width:100%}.title-actions button{justify-content:center;flex:1}.page-footer{flex-direction:column}.control-topline{grid-template-columns:repeat(2,1fr)}.header-actions{gap:7px}.live-chip{font-size:9px}.section-heading p{display:none}.coverage-hero{margin-top:17px}}
+</style>
+  
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="Main navigation">
+      <a class="brand" href="#overview" aria-label="CloudGuard overview">
+        <span class="brand-symbol" aria-hidden="true"><svg viewBox="0 0 30 30" fill="none"><path d="M15 2L26 7v9.3C26 22.6 20.2 26 15 28 9.8 26 4 22.6 4 16.3V7L15 2Z" stroke="currentColor" stroke-width="2"/><path d="m9 15 4 4 8-9" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/></svg></span>
+        <span><strong>CLOUD<span class="brand-accent">GUARD</span></strong><small>SECURITY INTELLIGENCE</small></span>
+      </a>
+      <div class="nav-caption">WORKSPACE</div>
+      <nav class="navigation" id="navigation">
+        <button type="button" class="nav-item active" data-view="overview" aria-current="page"><span class="nav-ico">◫</span><span>Overview</span><span class="nav-shortcut">01</span></button>
+        <button type="button" class="nav-item" data-view="findings"><span class="nav-ico">▤</span><span>Findings explorer</span><span class="nav-shortcut">02</span></button>
+        <button type="button" class="nav-item" data-view="controls"><span class="nav-ico">⬡</span><span>Control coverage</span><span class="nav-shortcut">03</span></button>
+      </nav>
+      <div class="sidebar-spacer"></div>
+      <div class="environment-panel">
+        <div class="tiny-label">DATA CLASSIFICATION</div>
+        <div class="sample-label"><span class="signal amber"></span> SIMULATED DATA</div>
+        <p>No live systems, cloud accounts, or customer data are connected.</p>
+      </div>
+      <div class="sidebar-footer"><div class="avatar">AS</div><div><strong>Security portfolio</strong><span>Abdulrahman Safwat</span></div></div>
+    </aside>
+
+    <main class="main" id="main-content">
+      <header class="page-header">
+        <div class="breadcrumb"><span>WORKSPACE</span><span class="slash">/</span><span id="view-crumb">OVERVIEW</span></div>
+        <div class="header-actions"><span class="live-chip"><span class="signal"></span> SYNTHETIC SNAPSHOT</span><span class="snapshot-date">08 NOV 2026</span></div>
+      </header>
+      <div class="content">
+        <div class="page-title-row"><div><div class="eyebrow">CLOUD SECURITY OPERATIONS <span class="accent-line"></span> PORTFOLIO DEMO</div><h1 id="page-title">Cloud security posture<span class="period">.</span></h1><p class="intro" id="page-description">A decision-ready view of cloud exposure, security controls, and remediation priorities.</p></div><div class="title-actions"><button class="btn btn-secondary" type="button" id="reset-filters" title="Reset all filters">↺ <span>Reset filters</span></button><button class="btn btn-primary" type="button" id="download-csv"><span aria-hidden="true">↓</span> Export findings</button></div></div>
+
+        <section class="filter-strip" aria-label="Dashboard filters">
+          <label class="filter-field"><span>ENVIRONMENT</span><select id="environment-filter"><option value="all">All environments</option><option value="production">Production</option><option value="staging">Staging</option><option value="shared">Shared services</option></select></label>
+          <label class="filter-field"><span>CONTROL DOMAIN</span><select id="domain-filter"><option value="all">All domains</option><option value="identity">Identity & access</option><option value="network">Network exposure</option><option value="data">Data protection</option><option value="workload">Workload security</option><option value="monitoring">Monitoring</option><option value="application">Application security</option></select></label>
+          <label class="filter-field"><span>SEVERITY <small>(findings)</small></span><select id="severity-filter"><option value="all">All severities</option><option value="critical">Critical</option><option value="high">High</option><option value="medium">Medium</option><option value="low">Low</option></select></label>
+          <label class="filter-field search-field"><span>FIND A RECORD</span><div class="search-wrap"><span aria-hidden="true">⌕</span><input id="search-filter" type="search" placeholder="ID, asset, finding, owner..." autocomplete="off" aria-label="Search findings" /></div></label>
+        </section>
+        <div class="source-banner" role="note"><span aria-hidden="true">◇</span><span><strong>Demonstration environment.</strong> All hosts, findings, controls and historical points are fabricated for a portfolio example. No live audit or compliance certification is implied.</span></div>
+
+        <section class="view" id="view-overview" aria-label="Overview dashboard">
+          <div class="section-heading"><div><span class="section-index">01 /</span> <h2>Security pulse</h2></div><p>Current simulated state · <span id="summary-scope">All environments</span></p></div>
+          <div class="kpi-grid" id="kpi-grid" aria-live="polite"></div>
+
+          <div class="viz-grid">
+            <article class="panel severity-panel"><div class="panel-heading"><div><div class="panel-kicker">PORTFOLIO EXPOSURE</div><h3>Severity distribution</h3></div><span class="panel-tag">OPEN FINDINGS</span></div><div class="donut-layout"><div class="donut-wrap"><div class="donut" id="severity-donut" role="img" aria-label="Open finding severity distribution"><div class="donut-center"><strong id="donut-total">0</strong><span>OPEN</span></div></div></div><div class="severity-legend" id="severity-legend"></div></div><div class="panel-footnote">Counts are based on currently open synthetic findings.</div></article>
+            <article class="panel risk-panel"><div class="panel-heading"><div><div class="panel-kicker">PRIORITY ANALYSIS</div><h3>Risk concentration</h3></div><span class="panel-tag">WEIGHTED POINTS</span></div><div class="bars" id="domain-bars"></div><div class="panel-footnote">Illustrative risk scores summed by control domain; not CVSS.</div></article>
+          </div>
+
+          <div class="viz-grid lower-grid">
+            <article class="panel trend-panel"><div class="panel-heading"><div><div class="panel-kicker">TEMPORAL SIGNAL</div><h3>Open findings trend</h3><p class="panel-subtitle">Weekly counts reconstructed from fictional discovery and resolution dates</p></div><span class="panel-tag">7 WEEKLY POINTS</span></div><div class="trend-chart" id="trend-chart"></div><div class="trend-footer"><span><span class="signal"></span> OPEN FINDINGS</span><span>27 SEP — 08 NOV 2026</span></div></article>
+            <article class="panel coverage-panel"><div class="panel-heading"><div><div class="panel-kicker">CONTROL HYGIENE</div><h3>Assessment coverage</h3></div><span class="panel-tag">CONTROL CATALOG</span></div><div class="coverage-hero"><div><span class="coverage-number" id="coverage-number">—</span><span class="coverage-unit">PASS RATE</span></div><div class="coverage-gauge"><div id="coverage-progress"></div></div></div><div id="coverage-breakdown" class="coverage-breakdown"></div><p class="panel-footnote">Pass ÷ assessed controls. Unassessed controls excluded. Severity and search filters apply only to findings.</p></article>
+          </div>
+
+          <div class="section-heading queue-title"><div><span class="section-index">02 /</span><h2>Priority action queue</h2></div><button type="button" class="text-button" data-view="findings">View all findings <span aria-hidden="true">↗</span></button></div>
+          <div class="table-panel"><div class="table-topline"><span class="tiny-label">SORTED BY RISK SCORE</span><span class="table-count" id="overview-table-count">—</span></div><div class="table-scroller"><table><thead><tr><th>FINDING</th><th>SEVERITY</th><th>ENVIRONMENT</th><th>PRIORITY</th><th>OWNER</th><th>DUE DATE</th><th></th></tr></thead><tbody id="overview-table"></tbody></table></div></div>
+        </section>
+
+        <section class="view hidden" id="view-findings" aria-label="Findings explorer">
+          <div class="section-heading"><div><span class="section-index">02 /</span><h2>Findings explorer</h2></div><p>Interactive review · all filtered records</p></div>
+          <div class="subhead-card"><span class="subhead-icon">▤</span><div><strong id="findings-total">—</strong><p>Showing the complete filtered set, including resolved findings. Select any record for details.</p></div></div>
+          <div class="table-panel"><div class="table-topline"><span class="tiny-label">PRIORITIZED INVENTORY</span><span class="table-count" id="findings-table-count">—</span></div><div class="table-scroller"><table><thead><tr><th>FINDING</th><th>SEVERITY</th><th>ENVIRONMENT</th><th>STATUS</th><th>PRIORITY</th><th>OWNER</th><th>DUE DATE</th><th></th></tr></thead><tbody id="findings-table"></tbody></table></div></div>
+        </section>
+
+        <section class="view hidden" id="view-controls" aria-label="Control assessments">
+          <div class="section-heading"><div><span class="section-index">03 /</span><h2>Control assessments</h2></div><p>Snapshot control catalog · <span id="controls-scope">All environments</span></p></div>
+          <div class="control-topline" id="control-summary"></div>
+          <div class="table-panel"><div class="table-topline"><span class="tiny-label">ASSESSMENT REGISTER</span><span class="table-count" id="controls-table-count">—</span></div><div class="table-scroller"><table><thead><tr><th>CONTROL</th><th>DOMAIN</th><th>ENVIRONMENT</th><th>RESULT</th><th>OWNER</th><th>OBSERVATION</th></tr></thead><tbody id="controls-table"></tbody></table></div></div>
+          <p class="control-note">These are fabricated control assessments, not actual GCP configuration findings or verified audit evidence.</p>
+        </section>
+        <footer class="page-footer"><span>© 2026 CLOUDGUARD <span class="footer-divider">/</span> PORTFOLIO DEMONSTRATION</span><span>MADE FOR SECURITY DECISIONS <span class="footer-dot">●</span> ALL DATA FICTIONAL</span></footer>
+      </div>
+    </main>
+  </div>
+  <div class="drawer-backdrop hidden" id="drawer-backdrop"></div>
+  <aside class="detail-drawer hidden" id="detail-drawer" aria-labelledby="drawer-title" aria-modal="true" role="dialog" tabindex="-1">
+    <div class="drawer-head"><div><span class="tiny-label">FINDING DETAIL</span><h2 id="drawer-title">—</h2></div><button class="close-btn" id="close-drawer" type="button" aria-label="Close finding details">×</button></div><div class="drawer-body" id="drawer-content"></div>
+  </aside>
+  <noscript><div class="noscript">This dashboard requires JavaScript. All source code is available in its public GitHub repository.</div></noscript>
+<script>// Entirely fictional sample data. No production data, credentials or real targets.
+const snapshotDate = '2026-11-08';
+const environments = [
+  { id: 'production', label: 'Production', short: 'PRD' },
+  { id: 'staging', label: 'Staging', short: 'STG' },
+  { id: 'shared', label: 'Shared services', short: 'SHR' },
+];
+const domains = [
+  { id: 'identity', label: 'Identity & access', short: 'IAM' },
+  { id: 'network', label: 'Network exposure', short: 'NET' },
+  { id: 'data', label: 'Data protection', short: 'DATA' },
+  { id: 'workload', label: 'Workload security', short: 'VM' },
+  { id: 'monitoring', label: 'Monitoring', short: 'LOG' },
+  { id: 'application', label: 'Application security', short: 'APP' },
+];
+const F = (id, title, asset, environment, domain, severity, status, discovered, due, owner, extras={}) => ({
+  id, title, asset, environment, domain, severity, status, discovered, due, owner, internetExposed:false,
+  paymentCritical:false, knownExploited:false, resolved:null, ...extras,
+});
+const findings = [
+  F('SIM-101','Broad service account privileges','batch-worker.demo.invalid','production','identity','critical','open','2026-09-12','2026-09-30','Platform',{paymentCritical:true}),
+  F('SIM-102','Public administrative service route','admin-gw.demo.invalid','production','network','critical','in_progress','2026-10-01','2026-10-11','Platform',{internetExposed:true,paymentCritical:true}),
+  F('SIM-103','Unrestricted sample database ingress','db-edge.demo.invalid','production','data','critical','open','2026-10-08','2026-10-20','Database',{internetExposed:true}),
+  F('SIM-104','Legacy TLS setting on sample gateway','gateway.demo.invalid','production','network','high','in_progress','2026-09-20','2026-10-17','Platform',{internetExposed:true,paymentCritical:true}),
+  F('SIM-105','Patch age exceeds internal target','worker-02.demo.invalid','production','workload','high','open','2026-09-25','2026-10-25','Platform'),
+  F('SIM-106','Audit-log coverage gap','events.demo.invalid','production','monitoring','high','open','2026-10-03','2026-11-02','Security',{paymentCritical:true}),
+  F('SIM-107','Excessive API rate limit','api.demo.invalid','production','application','high','mitigated','2026-10-10','2026-11-10','App Eng',{internetExposed:true}),
+  F('SIM-108','Unreviewed key rotation window','vault.demo.invalid','production','data','medium','accepted_risk','2026-09-22','2026-11-18','Security'),
+  F('SIM-109','Security header policy review','web.demo.invalid','production','application','medium','open','2026-10-25','2026-11-22','App Eng',{internetExposed:true}),
+  F('SIM-110','Overly broad view-only access','reporter.demo.invalid','production','identity','low','open','2026-11-01','2026-12-01','Security'),
+  F('SIM-111','Previously observed egress exception','processor.demo.invalid','production','network','medium','resolved','2026-09-15','2026-10-15','Platform',{resolved:'2026-10-07'}),
+  F('SIM-112','Previously observed token lifecycle gap','auth.demo.invalid','production','application','high','resolved','2026-09-28','2026-10-20','App Eng',{resolved:'2026-10-18'}),
+  F('SIM-113','Overpermissive staging developer role','dev-vm.demo.invalid','staging','identity','high','open','2026-09-19','2026-10-19','Platform'),
+  F('SIM-114','Test dashboard exposed to internet','preview.demo.invalid','staging','network','high','in_progress','2026-10-11','2026-10-29','Platform',{internetExposed:true}),
+  F('SIM-115','Legacy workload image','runner.demo.invalid','staging','workload','medium','open','2026-10-03','2026-11-02','Platform'),
+  F('SIM-116','Synthetic secret in test configuration','sandbox.demo.invalid','staging','data','medium','mitigated','2026-10-09','2026-11-09','App Eng'),
+  F('SIM-117','Staging log alert missing','logs-st.demo.invalid','staging','monitoring','low','open','2026-10-26','2026-11-24','Security'),
+  F('SIM-118','Historical staging network exception','old-st.demo.invalid','staging','network','high','resolved','2026-09-10','2026-10-01','Platform',{resolved:'2026-09-28'}),
+  F('SIM-119','Shared service role review pending','cicd.demo.invalid','shared','identity','high','open','2026-09-24','2026-10-31','Platform'),
+  F('SIM-120','Centralized logging retention gap','audit.demo.invalid','shared','monitoring','medium','open','2026-10-05','2026-11-07','Security'),
+  F('SIM-121','Shared artifact policy requires review','artifact.demo.invalid','shared','workload','medium','accepted_risk','2026-10-10','2026-11-12','Platform'),
+  F('SIM-122','Shared build token scope too broad','build.demo.invalid','shared','identity','critical','in_progress','2026-10-14','2026-10-25','Platform',{paymentCritical:true}),
+  F('SIM-123','Unrestricted sample service binding','relay.demo.invalid','shared','network','low','open','2026-11-01','2026-12-02','Platform'),
+  F('SIM-124','Previously observed shared alert defect','notify.demo.invalid','shared','monitoring','low','resolved','2026-09-18','2026-10-10','Security',{resolved:'2026-10-05'}),
+];
+const C = (id, title, environment, domain, status, owner, observation) => ({id,title,environment,domain,status,owner,observation});
+const controls = [
+  C('CTRL-01','Least-privilege review cadence','production','identity','fail','Security','Periodic service-account reviews need remediation.'),
+  C('CTRL-02','Privileged access MFA','production','identity','pass','Security','Simulated MFA control verified in demonstration.'),
+  C('CTRL-03','Public ingress restrictions','production','network','fail','Platform','Review unexpected external entry points.'),
+  C('CTRL-04','Approved load balancer routing','production','network','partial','Platform','One exception still requires follow-up.'),
+  C('CTRL-05','Database encryption in transit','production','data','pass','Database','Demo transport policy passes sample checks.'),
+  C('CTRL-06','Backup recovery exercise','production','data','partial','Database','Restore documentation requires review.'),
+  C('CTRL-07','Workload patch management','production','workload','partial','Platform','Patch backlog present in synthetic snapshot.'),
+  C('CTRL-08','Central audit logging','production','monitoring','fail','Security','One illustrative collection gap.'),
+  C('CTRL-09','API authentication review','production','application','pass','App Eng','Sample authentication checks have passed.'),
+  C('CTRL-10','Secure response headers','production','application','partial','App Eng','Browser policy needs manual review.'),
+  C('CTRL-11','Developer role boundaries','staging','identity','fail','Platform','Overprivileged sample role.'),
+  C('CTRL-12','Preview service access controls','staging','network','fail','Platform','Test service exposure needs resolution.'),
+  C('CTRL-13','Encryption for test secrets','staging','data','partial','App Eng','Configuration cleanup underway.'),
+  C('CTRL-14','Staging workload updates','staging','workload','partial','Platform','Some synthetic images are old.'),
+  C('CTRL-15','Staging alerting','staging','monitoring','pass','Security','Sample alert routing passes.'),
+  C('CTRL-16','API authentication in test','staging','application','pass','App Eng','Example checks pass.'),
+  C('CTRL-17','Pipeline service identities','shared','identity','fail','Platform','Build-account scope is too broad.'),
+  C('CTRL-18','Shared network segmentation','shared','network','pass','Platform','Demonstration boundaries pass.'),
+  C('CTRL-19','Artifact integrity checks','shared','workload','not_assessed','Platform','Needs an assessment; exclude from pass-rate denominator.'),
+  C('CTRL-20','Security event retention','shared','monitoring','partial','Security','Retention exception being addressed.'),
+];
+const statusNames = {open:'Open',in_progress:'In progress',mitigated:'Mitigated',accepted_risk:'Accepted risk',resolved:'Resolved'};
+const severityOrder = ['critical','high','medium','low'];
+
+const AS_OF = snapshotDate;
+const baseRisk = { critical:70, high:50, medium:30, low:12 };
+const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
+function dayDifference(a,b) {
+  if(!ISO_DATE.test(a)||!ISO_DATE.test(b)||Number.isNaN(Date.parse(a))||Number.isNaN(Date.parse(b)))throw new Error('Invalid ISO dates');
+  return Math.round((Date.parse(a+'T00:00:00Z')-Date.parse(b+'T00:00:00Z'))/86400000);
+}
+function isOpenAt(f, at=AS_OF) { return f.discovered <= at && (!f.resolved || f.resolved > at); }
+function riskScore(f, at=AS_OF) {
+  if(!isOpenAt(f,at))return 0;
+  return Math.min(100, baseRisk[f.severity] + (f.internetExposed?12:0)+(f.paymentCritical?8:0)+
+      (f.knownExploited?10:0)+(f.due<at?8:0));
+}
+function overdue(f,at=AS_OF) { return isOpenAt(f,at) && f.status !== 'accepted_risk' && f.due<at; }
+function filteredFindings(all, filters={}) {
+  const q=(filters.query||'').trim().toLocaleLowerCase();
+  return all.filter(f => (filters.environment==='all'||!filters.environment||f.environment===filters.environment)
+    && (filters.domain==='all'||!filters.domain||f.domain===filters.domain)
+    && (filters.severity==='all'||!filters.severity||f.severity===filters.severity)
+    && (!q||[f.id,f.title,f.asset,f.owner].some(v=>v.toLocaleLowerCase().includes(q))));
+}
+function filteredControls(all, filters={}){
+  return all.filter(c=>(filters.environment==='all'||!filters.environment||c.environment===filters.environment)
+    && (filters.domain==='all'||!filters.domain||c.domain===filters.domain));
+}
+function summarizeFindings(rows,at=AS_OF){
+  const active=rows.filter(f=>isOpenAt(f,at));
+  const bySeverity=Object.fromEntries(severityOrder.map(s=>[s,active.filter(f=>f.severity===s).length]));
+  return {total:rows.length,active:active.length,critical:bySeverity.critical,
+    overdue:active.filter(f=>overdue(f,at)).length,
+    exposedAssets:new Set(active.filter(f=>f.internetExposed).map(f=>f.asset)).size,
+    resolved:rows.filter(f=>f.resolved && f.resolved<=at).length, bySeverity};
+}
+function controlCoverage(rows){
+  const assessed=rows.filter(c=>c.status!=='not_assessed');
+  const passed=assessed.filter(c=>c.status==='pass').length;
+  return {assessed:assessed.length,passed,unassessed:rows.length-assessed.length,
+    percentage:assessed.length?Math.round(passed/assessed.length*100):null};
+}
+function riskByDomain(rows,at=AS_OF){
+  return domains.map(d=>({...d,score:rows.filter(f=>f.domain===d.id).reduce((sum,f)=>sum+riskScore(f,at),0),
+    open:rows.filter(f=>f.domain===d.id&&isOpenAt(f,at)).length}));
+}
+function weeklyTrend(rows){
+  const dates=['2026-09-27','2026-10-04','2026-10-11','2026-10-18','2026-10-25','2026-11-01',AS_OF];
+  return dates.map(date=>({date,count:rows.filter(f=>isOpenAt(f,date)).length}));
+}
+function actionQueue(rows,at=AS_OF){
+  return rows.filter(f=>isOpenAt(f,at)).sort((a,b)=>riskScore(b,at)-riskScore(a,at)
+    || (overdue(b,at)?1:0)-(overdue(a,at)?1:0) || a.due.localeCompare(b.due) || a.id.localeCompare(b.id));
+}
+function csvEscape(value){
+  let text=String(value ?? '');
+  if(/^[\s]*[=+@-]/.test(text)) text="'"+text;
+  return /[",\r\n]/.test(text)?`"${text.replace(/"/g,'""')}"`:text;
+}
+function exportFindingsCsv(rows){
+  const fields=['id','title','asset','environment','domain','severity','status','owner','discovered','due','priority','overdue'];
+  return [fields.join(','),...rows.map(f=>fields.map(k=>csvEscape(k==='priority'?riskScore(f):k==='overdue'?(overdue(f)?'Yes':'No'):f[k])).join(','))].join('\r\n')+'\r\n';
+}
+function statusLabel(status){return {open:'Open',in_progress:'In progress',mitigated:'Mitigated',accepted_risk:'Accepted risk',resolved:'Resolved'}[status]||status;}
+function dateLabel(iso){return new Date(iso+'T00:00:00Z').toLocaleDateString('en-US',{month:'short',day:'numeric',timeZone:'UTC'});}
+
+
+const $ = sel => document.querySelector(sel);
+const escapeHTML = text => String(text ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const envName = id => environments.find(x=>x.id===id)?.label ?? id;
+const domainName = id => domains.find(x=>x.id===id)?.label ?? id;
+const sevColors = {critical:'#fb7776',high:'#f7bf65',medium:'#7098f6',low:'#60dbc2'};
+const controlNames = {pass:'Pass',partial:'Partial',fail:'Fail',not_assessed:'Not assessed'};
+const headings = {
+  overview:['OVERVIEW','Cloud security posture','A decision-ready view of cloud exposure, security controls, and remediation priorities.'],
+  findings:['FINDINGS EXPLORER','Findings explorer','Investigate the complete simulated findings register and export the filtered inventory.'],
+  controls:['CONTROL COVERAGE','Security controls','Examine a synthetic assessment catalog by environment, domain, and control outcome.'],
+};
+let filters = {environment:'all',domain:'all',severity:'all',query:''};
+let activeView = 'overview';
+let previousFocus = null;
+
+function label(text){return escapeHTML(text);}
+function num(v){return Number(v).toLocaleString('en-US');}
+function safeBadge(value,text=value){return `<span class="badge ${escapeHTML(value)}">${escapeHTML(text)}</span>`;}
+
+function renderKPIs(rows,controlRows){
+  const s=summarizeFindings(rows), c=controlCoverage(controlRows);
+  const cards=[
+    {label:'Open findings',value:num(s.active),detail:`${num(s.resolved)} resolved in filtered inventory`,color:'#68e5d2'},
+    {label:'Critical exposure',value:num(s.critical),detail:'Open critical-severity findings',color:'#fb7776'},
+    {label:'Overdue actions',value:num(s.overdue),detail:'Accepted risk excluded from overdue',color:'#f7bf65'},
+    {label:'Exposed assets',value:num(s.exposedAssets),detail:'Distinct internet-exposed assets',color:'#5f8bf9'},
+    {label:'Control pass rate',value:c.percentage===null?'—':c.percentage+'%',detail:`${c.passed} / ${c.assessed} assessed controls · severity ignored`,color:'#ae91f0'},
+  ];
+  $('#kpi-grid').innerHTML=cards.map(x=>`<article class="kpi" style="--kpi-accent:${x.color}"><div class="kpi-label">${label(x.label)}</div><div class="kpi-value">${label(x.value)}</div><div class="kpi-footer">${label(x.detail)}</div></article>`).join('');
+  $('#summary-scope').textContent=filters.environment==='all'?'All environments':envName(filters.environment);
+}
+function renderDonut(rows){
+  const stats=summarizeFindings(rows), total=stats.active;
+  const legend=severityOrder.map(s=>({id:s,n:stats.bySeverity[s],color:sevColors[s]}));
+  let running=0;
+  const stops=legend.map(x=>{
+    const from=running;running+=total?x.n/total*100:0;
+    return `${x.color} ${from.toFixed(2)}% ${running.toFixed(2)}%`;
+  });
+  const d=$('#severity-donut');
+  d.style.setProperty('--segments',total?stops.join(', '):'#223243 0% 100%');
+  d.setAttribute('aria-label',`Open findings: ${legend.map(x=>`${x.id} ${x.n}`).join(', ')}`);
+  $('#donut-total').textContent=total;
+  $('#severity-legend').innerHTML=legend.map(x=>`<div class="legend-row"><i class="legend-dot" style="background:${x.color}"></i><span>${label(x.id[0].toUpperCase()+x.id.slice(1))}</span><strong>${x.n}</strong></div>`).join('');
+}
+function renderDomains(rows){
+  const scores=riskByDomain(rows).sort((a,b)=>b.score-a.score||a.label.localeCompare(b.label));
+  const max=Math.max(1,...scores.map(x=>x.score));
+  $('#domain-bars').innerHTML=scores.map(x=>`<div class="bar-item"><div class="bar-header"><strong>${label(x.label)}</strong><span>${num(x.score)} pts · ${x.open} open</span></div><div class="bar-track"><div class="bar-fill" style="width:${(x.score/max*100).toFixed(1)}%"></div></div></div>`).join('');
+}
+function renderTrend(rows){
+  const trend=weeklyTrend(rows);const width=650,height=222,left=28,right=21,top=20,bottom=28;
+  const plotWidth=width-left-right,plotHeight=height-top-bottom;
+  const max=Math.max(4,...trend.map(d=>d.count));
+  const ceil=Math.max(4,Math.ceil(max/4)*4);
+  const pts=trend.map((t,i)=>({x:left+plotWidth*i/(trend.length-1),y:top+plotHeight*(1-t.count/ceil),...t}));
+  const path=pts.map((p,i)=>`${i?'L':'M'}${p.x.toFixed(2)} ${p.y.toFixed(2)}`).join(' ');
+  const bottomY=height-bottom;
+  const area=`${path} L${pts[pts.length-1].x} ${bottomY} L${pts[0].x} ${bottomY} Z`;
+  const grids=[0,.25,.5,.75,1].map(t=>{const y=top+(1-t)*plotHeight;return `<line x1="${left}" y1="${y}" x2="${width-right}" y2="${y}" stroke="#263849" stroke-width="1" stroke-dasharray="4 7"/><text x="1" y="${y+4}" fill="#758c9e" font-size="11">${Math.round(t*ceil)}</text>`}).join('');
+  $('#trend-chart').innerHTML=`<svg viewBox="0 0 ${width} ${height}" role="img" aria-label="Weekly synthetic open finding counts: ${trend.map(x=>x.count).join(', ')}"><defs><linearGradient id="trend-area" x1="0" x2="0" y1="0" y2="1"><stop stop-color="#53dfc8" stop-opacity=".24"/><stop offset="1" stop-color="#53dfc8" stop-opacity="0"/></linearGradient></defs>${grids}<path d="${area}" fill="url(#trend-area)"/><path d="${path}" fill="none" stroke="#6fe8d3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>${pts.map(p=>`<circle cx="${p.x}" cy="${p.y}" r="4" fill="#0e1824" stroke="#79f7dc" stroke-width="2"><title>${p.date}: ${p.count} open findings</title></circle>`).join('')}${pts.map(p=>`<text x="${p.x}" y="${height-6}" text-anchor="middle" fill="#738a9c" font-size="10">${dateLabel(p.date)}</text>`).join('')}</svg>`;
+}
+function renderCoverage(rows){
+  const c=controlCoverage(rows),n=rows.length;
+  $('#coverage-number').textContent=c.percentage===null?'—':`${c.percentage}%`;
+  $('#coverage-progress').style.width=(c.percentage??0)+'%';
+  const counts=Object.fromEntries(['pass','partial','fail','not_assessed'].map(s=>[s,rows.filter(r=>r.status===s).length]));
+  const parts=[['Pass',counts.pass],['Partial',counts.partial],['Fail',counts.fail],['Not assessed',counts.not_assessed]];
+  $('#coverage-breakdown').innerHTML=parts.map(([l,v])=>`<div class="coverage-cell"><span>${label(l)}</span><strong>${v}</strong></div>`).join('');
+  $('#controls-scope').textContent=filters.environment==='all'?'All environments':envName(filters.environment);
+  $('#control-summary').innerHTML=[{label:'Assessed controls',value:c.assessed},{label:'Passing',value:c.passed},{label:'Open gaps',value:counts.fail+counts.partial},{label:'Not assessed',value:c.unassessed}].map(x=>`<div class="control-stat"><strong>${x.value}</strong><span>${label(x.label)}</span></div>`).join('');
+}
+function findingRow(f,compact=false){
+  const score=riskScore(f);const dueTag=overdue(f)?`<span class="overdue">OVERDUE</span>`:'';
+  return `<tr><td><span class="finding-title" title="${label(f.title)}">${label(f.title)}</span><span class="finding-meta">${label(f.id)} · ${label(f.asset)}</span></td><td>${safeBadge(f.severity,f.severity.toUpperCase())}</td><td>${label(envName(f.environment))}</td>${compact?'':`<td>${safeBadge(f.status,statusLabel(f.status))}</td>`}<td><div class="priority-cell"><span class="priority-track"><b style="width:${score}%"></b></span><strong>${score}</strong></div></td><td>${label(f.owner)}</td><td>${label(dateLabel(f.due))}${dueTag}</td><td><button type="button" class="row-button" data-finding-id="${label(f.id)}" aria-label="View details for ${label(f.id)}">Details ↗</button></td></tr>`;
+}
+function renderTables(rows){
+  const queue=actionQueue([...rows]);
+  $('#overview-table-count').textContent=`Top ${Math.min(5,queue.length)} of ${queue.length} active`;
+  $('#overview-table').innerHTML=queue.length?queue.slice(0,5).map(f=>findingRow(f,true)).join(''):`<tr><td colspan="7"><div class="empty-state">No active findings match your filters.</div></td></tr>`;
+  const all=[...rows].sort((a,b)=>riskScore(b)-riskScore(a)||a.id.localeCompare(b.id));
+  $('#findings-total').textContent=`${all.length} records · ${queue.length} active`;
+  $('#findings-table-count').textContent=`${all.length} records`;
+  $('#findings-table').innerHTML=all.length?all.map(f=>findingRow(f,false)).join(''):`<tr><td colspan="8"><div class="empty-state">No findings match these filters. Try Reset filters.</div></td></tr>`;
+}
+function renderControlTable(rows){
+  $('#controls-table-count').textContent=`${rows.length} controls`;
+  $('#controls-table').innerHTML=rows.length?rows.map(c=>`<tr><td><span class="finding-title">${label(c.title)}</span><span class="finding-meta">${label(c.id)}</span></td><td>${label(domainName(c.domain))}</td><td>${label(envName(c.environment))}</td><td>${safeBadge(c.status,controlNames[c.status])}</td><td>${label(c.owner)}</td><td class="observation">${label(c.observation)}</td></tr>`).join(''):`<tr><td colspan="6"><div class="empty-state">No controls in this environment / domain selection.</div></td></tr>`;
+}
+function render(){
+  const rows=filteredFindings(findings,filters);const controlRows=filteredControls(controls,filters);
+  renderKPIs(rows,controlRows);renderDonut(rows);renderDomains(rows);renderTrend(rows);renderCoverage(controlRows);renderTables(rows);renderControlTable(controlRows);
+}
+function setView(view,updateHash=true){
+  if(!headings[view])view='overview';activeView=view;
+  for(const tab of document.querySelectorAll('[data-view]')){
+    if(!tab.classList.contains('nav-item'))continue;
+    tab.classList.toggle('active',tab.dataset.view===view);
+    if(tab.dataset.view===view)tab.setAttribute('aria-current','page');else tab.removeAttribute('aria-current');
+  }
+  for(const section of document.querySelectorAll('.view'))section.classList.toggle('hidden',section.id!==`view-${view}`);
+  const [crumb,title,description]=headings[view];
+  $('#view-crumb').textContent=crumb;$('#page-title').innerHTML=label(title)+'<span class="period">.</span>';
+  $('#page-description').textContent=description;
+  if(updateHash&&location.hash.slice(1)!==view)history.replaceState(null,'',`#${view}`);
+  window.scrollTo({top:0,behavior:'instant'});
+}
+function syncFilters(){
+  filters={environment:$('#environment-filter').value,domain:$('#domain-filter').value,
+    severity:$('#severity-filter').value,query:$('#search-filter').value};
+  render();
+}
+function openDetails(id){
+  const f=findings.find(x=>x.id===id);if(!f)return;
+  previousFocus=document.activeElement;
+  $('#drawer-title').textContent=f.title;
+  const score=riskScore(f);
+  const fields=[['Finding ID',f.id],['Asset (fictional)',f.asset],['Environment',envName(f.environment)],
+    ['Control domain',domainName(f.domain)],['Severity',f.severity.toUpperCase()],['Status',statusLabel(f.status)],
+    ['Owner (fictional)',f.owner],['Discovered',f.discovered],['Internal due date',f.due],
+    ['Internet exposed',f.internetExposed?'Yes':'No'],['Payment-critical flag',f.paymentCritical?'Yes':'No'],
+    ['Known exploitation flag',f.knownExploited?'Yes (synthetic)':'No'],['Overdue',overdue(f)?'Yes':'No'],
+    ['Resolved',f.resolved||'Not resolved']];
+  $('#drawer-content').innerHTML=`<div class="drawer-score"><div><strong>${score}</strong><small>ILLUSTRATIVE PRIORITY SCORE / 100</small></div>${safeBadge(f.severity,f.severity.toUpperCase())}</div>
+    <section class="drawer-section"><h3>CONTEXT</h3><dl class="drawer-list">${fields.map(([k,v])=>`<div><dt>${label(k)}</dt><dd>${label(v)}</dd></div>`).join('')}</dl></section>
+    <section class="drawer-section"><h3>REVIEW GUIDANCE</h3><p class="drawer-note">Validate the evidence and business impact before assigning a remediation deadline. The flags, asset and score in this example are entirely fictional. Risk scoring is not CVSS or an official compliance method.</p></section>`;
+  $('#drawer-backdrop').classList.remove('hidden');$('#detail-drawer').classList.remove('hidden');
+  document.body.style.overflow='hidden';$('#close-drawer').focus();
+}
+function closeDrawer(){
+  $('#drawer-backdrop').classList.add('hidden');$('#detail-drawer').classList.add('hidden');
+  document.body.style.overflow='';
+  if(previousFocus?.isConnected)previousFocus.focus();
+}
+function downloadCsv(){
+  const rows=filteredFindings(findings,filters);
+  const csv=exportFindingsCsv(rows);const blob=new Blob(['\uFEFF'+csv],{type:'text/csv;charset=utf-8'});
+  const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download='cloudguard-synthetic-findings-2026-11-08.csv';
+  document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);
+}
+function init(){
+  for(const id of ['environment','domain','severity'])$(`#${id}-filter`).addEventListener('change',syncFilters);
+  $('#search-filter').addEventListener('input',syncFilters);
+  $('#reset-filters').addEventListener('click',()=>{
+    for(const id of ['environment','domain','severity'])$(`#${id}-filter`).value='all';
+    $('#search-filter').value='';syncFilters();
+  });
+  $('#download-csv').addEventListener('click',downloadCsv);
+  document.addEventListener('click',evt=>{
+    const nav=evt.target.closest('[data-view]');if(nav){setView(nav.dataset.view);return;}
+    const detail=evt.target.closest('[data-finding-id]');if(detail)openDetails(detail.dataset.findingId);
+  });
+  $('#close-drawer').addEventListener('click',closeDrawer);
+  $('#drawer-backdrop').addEventListener('click',closeDrawer);
+  document.addEventListener('keydown',evt=>{
+    if(evt.key==='Escape'&&!$('#detail-drawer').classList.contains('hidden'))closeDrawer();
+    if(evt.key==='Tab'&&!$('#detail-drawer').classList.contains('hidden')){
+      // Single focusable control in drawer: keep keyboard focus inside the dialog.
+      evt.preventDefault();$('#close-drawer').focus();
+    }
+  });
+  window.addEventListener('hashchange',()=>setView(location.hash.slice(1),false));
+  render();setView(location.hash.slice(1)||'overview',false);
+}
+init();
+</script></body>
+</html>
