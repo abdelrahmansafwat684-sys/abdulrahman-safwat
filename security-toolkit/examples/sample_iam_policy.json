@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "bindings": [
+    {
+      "role": "roles/viewer",
+      "members": [
+        "group:security-team@example.invalid"
+      ]
+    },
+    {
+      "role": "roles/editor",
+      "members": [
+        "user:legacy-operator@example.invalid"
+      ]
+    },
+    {
+      "role": "roles/storage.objectViewer",
+      "members": [
+        "allUsers"
+      ]
+    }
+  ]
+}
