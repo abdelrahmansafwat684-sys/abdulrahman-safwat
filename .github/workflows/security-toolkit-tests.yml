@@ -1,0 +1,46 @@
+name: Security Toolkit Tests
+
+on:
+  push:
+    paths:
+      - 'security-toolkit/**'
+      - '.github/workflows/security-toolkit-tests.yml'
+  pull_request:
+    paths:
+      - 'security-toolkit/**'
+      - '.github/workflows/security-toolkit-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    name: Offline tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Compile modules
+        run: python -m compileall -q security-toolkit
+      - name: Run offline unit tests
+        working-directory: security-toolkit
+        run: python -m unittest discover -s tests -v
+      - name: Check CLI help
+        working-directory: security-toolkit
+        run: |
+          python security_toolkit.py --help
+          python security_toolkit.py headers --help
+          python security_toolkit.py tls --help
+          python security_toolkit.py iam --help
+      - name: Run sample offline IAM review
+        working-directory: security-toolkit
+        run: python security_toolkit.py iam examples/sample_iam_policy.json --json
