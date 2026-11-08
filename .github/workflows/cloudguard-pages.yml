@@ -56,6 +56,9 @@ jobs:
           cp projects/cybersecurity-portfolio/styles.css _site/portfolio/styles.css
           cp projects/cybersecurity-portfolio/script.js _site/portfolio/script.js
           cp projects/cybersecurity-portfolio/favicon.svg _site/portfolio/favicon.svg
+          cp projects/cybersecurity-portfolio/project-sheet.html _site/portfolio/project-sheet.html
+          cp projects/cybersecurity-portfolio/project-sheet.css _site/portfolio/project-sheet.css
+          cp projects/cybersecurity-portfolio/sitemap.xml _site/portfolio/sitemap.xml
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/app.mjs
@@ -66,6 +69,9 @@ jobs:
           test -s _site/portfolio/styles.css
           test -s _site/portfolio/script.js
           test -s _site/portfolio/favicon.svg
+          test -s _site/portfolio/project-sheet.html
+          test -s _site/portfolio/project-sheet.css
+          test -s _site/portfolio/sitemap.xml
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
