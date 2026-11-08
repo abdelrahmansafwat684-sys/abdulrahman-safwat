@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - 'projects/cloud-posture-dashboard/**'
+      - 'projects/cybersecurity-portfolio/**'
       - '.github/workflows/cloudguard-pages.yml'
   workflow_dispatch:
 
@@ -34,6 +35,8 @@ jobs:
           node --check projects/cloud-posture-dashboard/data.mjs
           node --check projects/cloud-posture-dashboard/logic.mjs
           node --test projects/cloud-posture-dashboard/tests/*.test.mjs
+          node --check projects/cybersecurity-portfolio/script.js
+          node --test projects/cybersecurity-portfolio/tests/*.test.mjs
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
@@ -48,12 +51,21 @@ jobs:
           cp projects/cloud-posture-dashboard/app.mjs _site/app.mjs
           cp projects/cloud-posture-dashboard/data.mjs _site/data.mjs
           cp projects/cloud-posture-dashboard/logic.mjs _site/logic.mjs
+          mkdir -p _site/portfolio
+          cp projects/cybersecurity-portfolio/index.html _site/portfolio/index.html
+          cp projects/cybersecurity-portfolio/styles.css _site/portfolio/styles.css
+          cp projects/cybersecurity-portfolio/script.js _site/portfolio/script.js
+          cp projects/cybersecurity-portfolio/favicon.svg _site/portfolio/favicon.svg
           touch _site/.nojekyll
           test -s _site/index.html
           test -s _site/app.mjs
           test -s _site/data.mjs
           test -s _site/logic.mjs
           test -s _site/styles.css
+          test -s _site/portfolio/index.html
+          test -s _site/portfolio/styles.css
+          test -s _site/portfolio/script.js
+          test -s _site/portfolio/favicon.svg
 
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
