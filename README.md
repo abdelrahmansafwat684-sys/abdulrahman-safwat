@@ -40,6 +40,21 @@ The example does not use customer data; the scoring model is not CVSS, PCI DSS, 
 - [See code and local run instructions](projects/cloud-posture-dashboard/README.md).
 - All data is fictional; this is a demonstration, not evidence of a live assessment or PCI DSS compliance.
 
+## GCP Security Automation — Read-Only Posture Auditor
+
+**[GCP Security Automation](projects/gcp-security-automation/)** — a Python CLI for **explicitly authorized, read-only** Google Cloud configuration exports and offline risk triage. It reviews firewall ingress, external VM IPs, project IAM bindings and Cloud SQL access/TLS/backup indicators.
+
+- **22 offline automated tests passed locally.** [Read the source and setup guide](projects/gcp-security-automation/README.md).
+- [Inspect synthetic security findings report](projects/gcp-security-automation/examples/sample_report.md) and [fictional input data](projects/gcp-security-automation/examples/synthetic_inventory.json).
+- Four hard-coded read-only `gcloud` commands, no change operations and no real client data in public GitHub.
+- The findings are context-dependent *review signals* — **not** confirmed vulnerabilities, effective-access findings or PCI DSS/NCA compliance certification.
+
+```bash
+cd projects/gcp-security-automation
+python -m unittest discover -s tests -v
+python gcp_audit.py analyze --input examples/synthetic_inventory.json --output-dir private-data/demo-report
+```
+
 ## Public Security Guides
 
 | Resource | What's inside |
