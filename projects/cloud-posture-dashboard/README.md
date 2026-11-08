@@ -70,10 +70,24 @@ This score **is not CVSS**, and this dashboard **does not assess PCI DSS or NCA 
 
 All environments, assets, alerts, owners, dates and control results are **invented demonstration examples**. Asset names end with `.demo.invalid`. No customer data, production configurations, cloud project identifiers, security evidence, payment cardholder information or credentials are included. Never use public GitHub as a place for confidential security exports.
 
-## GitHub Pages
+## GitHub Pages — publishing setup
 
-The project is a static website. To publish it under GitHub Pages, the repository owner can configure **Settings → Pages** to use GitHub Actions and add an approved Pages deployment workflow, or copy these files to a dedicated Pages repository. GitHub Pages does not automatically deploy a nested folder unless configured to do so; a README link to the source is not a hosted website.
+This project includes the dedicated deployment workflow [`cloudguard-pages.yml`](../../.github/workflows/cloudguard-pages.yml). It tests the static dashboard and uploads **only** the public website files (`index.html`, `styles.css`, `app.mjs`, `data.mjs`, and `logic.mjs`). No secret, API, or production data is required.
 
+**One-time repository-owner setup (if Pages is not enabled):**
+
+1. Open [Repository Settings → Pages](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/settings/pages).
+2. Under **Build and deployment → Source**, choose **GitHub Actions**. Ensure Actions are allowed for this repository.
+3. Open [Publish CloudGuard to GitHub Pages](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/actions/workflows/cloudguard-pages.yml), choose **Run workflow** on `main` if no successful deployment appeared automatically.
+4. Verify the build and deploy jobs are green. Only then should you use the site's public URL:
+
+```text
+https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/
+```
+
+This is an **expected URL, not evidence of successful publication** until Pages reports a successful deployment and the page actually loads. The workflow also runs on changes to the website and deployment configuration on `main`.
+
+**Note:** GitHub Pages is a public-facing host and not an access-controlled private environment. This project uses fully synthetic data.
 ## Author
 
 Abdulrahman Safwat — [GitHub profile](https://github.com/abdelrahmansafwat684-sys) · Public cybersecurity portfolio project.
