@@ -4,6 +4,18 @@
 
 I work on protecting websites, APIs and cloud infrastructure through risk-based assessments, configuration reviews, vulnerability management and secure change procedures.
 
+## Featured Python Project
+
+**[Security Review Toolkit v1.0](security-toolkit/)** — a dependency-free, read-only Python CLI that reviews HTTP headers, verifies TLS certificate expiry, and inspects sanitized GCP IAM policy files offline. Includes 10 unit tests and a GitHub Actions workflow targeting Python 3.11–3.13.
+
+```bash
+cd security-toolkit
+python -m unittest discover -s tests -v
+python security_toolkit.py iam examples/sample_iam_policy.json --json
+```
+
+The checks are non-exploitative; findings require context and human validation. Tests were run locally before publication.
+
 ## Public Security Guides
 
 | Resource | What's inside |
