@@ -1,0 +1,12 @@
+# Sensitive inventories and derived reports must never be committed.
+private-data/
+reports/
+*.private.json
+*.real.json
+*.key
+*.pem
+*.p12
+*.pfx
+__pycache__/
+*.py[cod]
+.venv/
