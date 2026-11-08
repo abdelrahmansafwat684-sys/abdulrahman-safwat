@@ -16,6 +16,18 @@ python security_toolkit.py iam examples/sample_iam_policy.json --json
 
 The checks are non-exploitative; findings require context and human validation. Tests were run locally before publication.
 
+## Featured Project: Vulnerability Triage & Reporting Engine
+
+**[Vulnerability Triage & Reporting Engine](projects/vulnerability-triage/)** — a standalone, offline Python CLI with 16 passing local tests. It accepts a structured findings list, ranks remediation priority using an explicitly illustrative risk model, tracks deadlines and produces Markdown, JSON and CSV reports. [View a synthetic executive report](projects/vulnerability-triage/examples/sample_executive_report.md).
+
+```bash
+cd projects/vulnerability-triage
+python -m unittest discover -s tests -v
+python triage.py --input examples/sample_findings.json --as-of 2026-11-08 --format markdown
+```
+
+The example does not use customer data; the scoring model is not CVSS, PCI DSS, or a compliance assessment.
+
 ## Public Security Guides
 
 | Resource | What's inside |
