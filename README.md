@@ -1,72 +1,25 @@
-# abdulrahman-safwat
-Cyber Security Learner | Penetration Testing | Linux | Web Security
-# Hi, I'm Abdulrahman Safwat 👋
+# Abdulrahman Safwat | Cybersecurity Portfolio
 
-## Cyber Security Learner | Penetration Testing | Linux | Web Security
+**Cybersecurity Specialist · Web & API Security · Google Cloud Security · FinTech Security**
 
-I am currently learning Cyber Security and Penetration Testing using Kali Linux.  
-I focus on web security, reconnaissance, vulnerability assessment, and writing clear security reports for developers and clients.
+I work on protecting websites, APIs and cloud infrastructure through risk-based assessments, configuration reviews, vulnerability management and secure change procedures.
 
----
+## Public Security Guides
 
-## 🔐 What I'm Learning
+| Resource | What's inside |
+| --- | --- |
+| [Web & API Security Review Checklist](security-guides/web-api-security-checklist.md) | Authentication, authorization, API safety and finding template |
+| [GCP Security Baseline](security-guides/gcp-security-baseline.md) | IAM, network exposure, workloads, logging and change control |
+| [TLS & HTTP Security Checks](security-guides/tls-http-security-checks.md) | Safe verification examples and remediation validation |
 
-- Linux Basics
-- Kali Linux Tools
-- Network Scanning
-- Web Application Security
-- OWASP Top 10
-- Vulnerability Reporting
-- Security Headers
-- SSL/TLS Checks
-- Reconnaissance
+## Areas of interest
+- Application and API security (OWASP-aligned approaches)
+- Google Cloud IAM, networking and hardening
+- Vulnerability management and security reporting
+- Secure operations and PCI DSS-related security controls
 
----
+> These are generic public reference materials, not reports of a real environment. Assessment work is performed only with authorization; no private client information is published.
 
-## 🛠️ Tools I Use
-
-- Kali Linux
-- Nmap
-- Nikto
-- WhatWeb
-- Gobuster
-- Curl
-- Git & GitHub
-- Burp Suite Community
-- Wireshark
-
----
-
-## 📂 Featured Projects
-
-### Web Security Assessment Reports
-Security reports for authorized web assessments.
-
-### Kali Linux Commands
-Organized notes and commands for cyber security learning.
-
-### OWASP Top 10 Notes
-Simple explanations and examples for common web vulnerabilities.
-
----
-
-## 📚 Current Focus
-
-- Web penetration testing
-- Linux command line
-- Security reporting
-- Bug bounty basics
-- OWASP Top 10
-
----
-
-## 📫 Contact
-
-- GitHub: @abdelrahmansafwat684-sys
-- Email: abdelrahmansafwat684@gmail.com
-
----
-
-## ⚠️ Ethics
-
-All security testing shown here is for educational purposes or authorized environments only.
+## Contact
+- [GitHub profile](https://github.com/abdelrahmansafwat684-sys)
+- [Email](mailto:abdelrahmansafwat684@gmail.com)
