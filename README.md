@@ -4,6 +4,14 @@
 
 I work on protecting websites, APIs and cloud infrastructure through risk-based assessments, configuration reviews, vulnerability management and secure change procedures.
 
+## Personal Cybersecurity Portfolio Website
+
+**[Explore my full cybersecurity portfolio](https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/portfolio/)** — responsive English-language professional website featuring all four public projects, source repositories, synthetic reports, and the CloudGuard live demo.
+
+- [Website source](projects/cybersecurity-portfolio/) · [26 offline site tests](projects/cybersecurity-portfolio/tests/site.test.mjs)
+- The website is deployed to the `/portfolio/` path through the shared GitHub Pages workflow; the original CloudGuard dashboard remains at the repository root.
+- **Deployment must succeed before treating this new site address as live.** [View the Pages workflow](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/actions/workflows/cloudguard-pages.yml).
+
 ## Featured Python Project
 
 **[Security Review Toolkit v1.0](security-toolkit/)** — a dependency-free, read-only Python CLI that reviews HTTP headers, verifies TLS certificate expiry, and inspects sanitized GCP IAM policy files offline. Includes 10 unit tests and a GitHub Actions workflow targeting Python 3.11–3.13.
