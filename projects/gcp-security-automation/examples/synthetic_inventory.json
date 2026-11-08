@@ -1,0 +1,89 @@
+{
+  "schema_version": 1,
+  "source": "synthetic-demo-fixture",
+  "project": "example-security-demo",
+  "collected_at": "2026-11-08T12:00:00+00:00",
+  "resources": {
+    "firewall_rules": [
+      {
+        "name": "demo-public-ssh",
+        "direction": "INGRESS",
+        "disabled": false,
+        "sourceRanges": ["0.0.0.0/0"],
+        "allowed": [{"IPProtocol": "tcp", "ports": ["22"]}],
+        "targetTags": ["demo-maintenance"]
+      },
+      {
+        "name": "demo-web-ingress",
+        "direction": "INGRESS",
+        "disabled": false,
+        "sourceRanges": ["0.0.0.0/0"],
+        "allowed": [{"IPProtocol": "tcp", "ports": ["443"]}],
+        "targetTags": ["demo-web"]
+      },
+      {
+        "name": "demo-restricted-ssh",
+        "direction": "INGRESS",
+        "disabled": false,
+        "sourceRanges": ["192.0.2.0/24"],
+        "allowed": [{"IPProtocol": "tcp", "ports": ["22"]}]
+      },
+      {
+        "name": "demo-public-dev",
+        "direction": "INGRESS",
+        "disabled": false,
+        "sourceRanges": ["::/0"],
+        "allowed": [{"IPProtocol": "tcp", "ports": ["8080"]}]
+      },
+      {
+        "name": "demo-disabled-rule",
+        "direction": "INGRESS",
+        "disabled": true,
+        "sourceRanges": ["0.0.0.0/0"],
+        "allowed": [{"IPProtocol": "all"}]
+      }
+    ],
+    "instances": [
+      {
+        "name": "demo-web-vm",
+        "status": "RUNNING",
+        "networkInterfaces": [{"accessConfigs": [{"natIP": "203.0.113.10"}]}]
+      },
+      {
+        "name": "demo-private-vm",
+        "status": "RUNNING",
+        "networkInterfaces": [{"networkIP": "10.20.0.4"}]
+      }
+    ],
+    "sql_instances": [
+      {
+        "name": "demo-public-postgres",
+        "databaseVersion": "POSTGRES_16",
+        "settings": {
+          "ipConfiguration": {
+            "ipv4Enabled": true,
+            "sslMode": "ALLOW_UNENCRYPTED_AND_ENCRYPTED",
+            "authorizedNetworks": [{"name": "demo-anywhere", "value": "0.0.0.0/0"}]
+          },
+          "backupConfiguration": {"enabled": false}
+        }
+      },
+      {
+        "name": "demo-private-postgres",
+        "databaseVersion": "POSTGRES_16",
+        "settings": {
+          "ipConfiguration": {"ipv4Enabled": false, "sslMode": "ENCRYPTED_ONLY"},
+          "backupConfiguration": {"enabled": true}
+        }
+      }
+    ],
+    "iam_policy": {
+      "version": 3,
+      "bindings": [
+        {"role": "roles/viewer", "members": ["group:security@example.invalid"]},
+        {"role": "roles/editor", "members": ["user:demo-operator@example.invalid"]},
+        {"role": "roles/storage.objectViewer", "members": ["allUsers"]}
+      ]
+    }
+  }
+}
