@@ -28,6 +28,14 @@ python triage.py --input examples/sample_findings.json --as-of 2026-11-08 --form
 
 The example does not use customer data; the scoring model is not CVSS, PCI DSS, or a compliance assessment.
 
+## Interactive Cloud Security Dashboard
+
+**[CloudGuard — Cloud Security Posture Dashboard](projects/cloud-posture-dashboard/)** — a responsive, self-contained browser dashboard with simulated cloud security findings, control assessments, risk visualization, filtering, action queues, and CSV export. Includes 18 passing offline tests and a CI workflow.
+
+- [Open standalone HTML source](projects/cloud-posture-dashboard/standalone.html) — save and open locally to interact with the full dashboard.
+- [See code and local run instructions](projects/cloud-posture-dashboard/README.md).
+- All data is fictional; this is a demonstration, not evidence of a live assessment or PCI DSS compliance.
+
 ## Public Security Guides
 
 | Resource | What's inside |
