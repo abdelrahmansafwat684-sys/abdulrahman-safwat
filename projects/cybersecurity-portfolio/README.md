@@ -28,6 +28,16 @@ The repository's GitHub Pages workflow publishes the site at `/portfolio/`, whil
 | Vulnerability Triage Engine | [Source](../vulnerability-triage/) | [Fictional example report](../vulnerability-triage/examples/sample_executive_report.md) |
 | Security Review Toolkit | [Source](../../security-toolkit/) | [Usage guide](../../security-toolkit/README.md) |
 
+## Portfolio v2 enhancements
+
+- **[Printable Project Brief](project-sheet.html)** — a concise, recruiter-friendly overview of all four projects, with a print/save-as-PDF control and A4-friendly print styling.
+- **Discoverability** — canonical URL, Open Graph/Twitter metadata, schema.org Person/SoftwareSourceCode markup and a lightweight `sitemap.xml`.
+- **Accessible interactions** — project-filter result announcements, true hidden-state rendering, and a mobile menu that supports Escape, closing on outside clicks and focus return.
+- **Validation** — **36 passing local Node.js tests** (original 26 plus 10 regression checks). Browser-driven testing was restricted in the execution environment; the remote Pages deployment should be checked through GitHub Actions.
+- Deployment workflow now publishes `project-sheet.html`, `project-sheet.css` and `sitemap.xml` alongside the existing portfolio and CloudGuard pages.
+
+The [full website](https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/portfolio/) and [printable brief](https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/portfolio/project-sheet.html) become available after the latest Pages workflow succeeds.
+
 ## Quality and accessibility
 
 - Semantic navigation, landmarks, readable headings and skip link
