@@ -1,0 +1,32 @@
+name: CloudGuard Dashboard Tests
+on:
+  push:
+    paths:
+      - 'projects/cloud-posture-dashboard/**'
+      - '.github/workflows/cloudguard-tests.yml'
+  pull_request:
+    paths:
+      - 'projects/cloud-posture-dashboard/**'
+      - '.github/workflows/cloudguard-tests.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        node-version: ['20', '22']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Validate syntax
+        run: |
+          node --check projects/cloud-posture-dashboard/app.mjs
+          node --check projects/cloud-posture-dashboard/data.mjs
+          node --check projects/cloud-posture-dashboard/logic.mjs
+      - name: Run offline tests
+        run: node --test projects/cloud-posture-dashboard/tests/*.test.mjs
