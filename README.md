@@ -30,9 +30,13 @@ The example does not use customer data; the scoring model is not CVSS, PCI DSS, 
 
 ## Interactive Cloud Security Dashboard
 
+**[🌐 Open CloudGuard — interactive demo](https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/)** · [Engineering case study](projects/cloud-posture-dashboard/CASE_STUDY.md) · [GitHub Actions](https://github.com/abdelrahmansafwat684-sys/abdulrahman-safwat/actions/workflows/cloudguard-pages.yml)
+
+
+
 **[CloudGuard — Cloud Security Posture Dashboard](projects/cloud-posture-dashboard/)** — a responsive, self-contained browser dashboard with simulated cloud security findings, control assessments, risk visualization, filtering, action queues, and CSV export. Includes 18 passing offline tests and a CI workflow.
 
-- [Open standalone HTML source](projects/cloud-posture-dashboard/standalone.html) — save and open locally to interact with the full dashboard.
+- [Live CloudGuard demo](https://abdelrahmansafwat684-sys.github.io/abdulrahman-safwat/) · [Open standalone HTML source](projects/cloud-posture-dashboard/standalone.html) — save and open locally to interact with the full dashboard.
 - [See code and local run instructions](projects/cloud-posture-dashboard/README.md).
 - All data is fictional; this is a demonstration, not evidence of a live assessment or PCI DSS compliance.
 
