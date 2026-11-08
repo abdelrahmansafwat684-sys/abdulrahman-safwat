@@ -1,0 +1,44 @@
+name: GCP Security Automation Tests
+
+on:
+  push:
+    paths:
+      - 'projects/gcp-security-automation/**'
+      - '.github/workflows/gcp-audit-tests.yml'
+  pull_request:
+    paths:
+      - 'projects/gcp-security-automation/**'
+      - '.github/workflows/gcp-audit-tests.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline-tests:
+    name: Offline read-only auditor (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ['3.11', '3.12', '3.13']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Check syntax
+        run: python -m compileall -q projects/gcp-security-automation
+      - name: Run isolated unit tests (no cloud access)
+        working-directory: projects/gcp-security-automation
+        run: python -m unittest discover -s tests -v
+      - name: Generate synthetic report smoke test
+        working-directory: projects/gcp-security-automation
+        run: |
+          python gcp_audit.py analyze --input examples/synthetic_inventory.json --output-dir private-data/ci-smoke
+          test -s private-data/ci-smoke/report.md
+          test -s private-data/ci-smoke/report.json
+          test -s private-data/ci-smoke/findings.csv
+      - name: Verify no credentials are present
+        run: |
+          ! find projects/gcp-security-automation -type f \( -name '*.pem' -o -name '*.p12' -o -name '*.key' \) | grep .
